@@ -8,9 +8,9 @@ Maybe this error comes from the VideoListActivity, in the method onResponse, I t
 with the items I get from the request.
 
   - All the items have the same name.
-  - Need to use Picasso to display thumbnail from his url.
+  - Need to use Picasso to display thumbnail from his url, problem with context.
  
  
-#### - On the YoutubeStandAlonePlayer :
+#### - On the YoutubePlayer :
 
   - There is a network error, I can't display the video.
