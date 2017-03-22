@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,7 +27,7 @@ public class VideoListActivity extends AppCompatActivity implements OnVideoSelec
 
     private static final String VIDEO_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     private RecyclerView recyclerView;
-    private String request;
+    private ImageView thumbnail;
     private List<ItemYT> items;
     private VideoEntry videoEntry = new VideoEntry();
     private VideoEntries videoEntries = new VideoEntries();
@@ -35,10 +36,12 @@ public class VideoListActivity extends AppCompatActivity implements OnVideoSelec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_list);
 
-        request = getIntent().getStringExtra("request");
+        String request = getIntent().getStringExtra("request");
         request = request.replaceAll("\\s", "+");
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        thumbnail = (ImageView) findViewById(R.id.img);
 
         getVideos(request);
 

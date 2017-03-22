@@ -19,7 +19,7 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
     private ImageView img;
 
     private OnVideoSelectedListener onVideoSelectedListener;
-
+    //private Context context;
 
     public VideoViewHolder(View itemView) {
         super(itemView);
@@ -31,6 +31,7 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
     public void bind(final VideoEntry video) {
 
         videoName.setText(video.getName());
+        //Picasso.with(context).load(video.getUrl()).into(img);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
