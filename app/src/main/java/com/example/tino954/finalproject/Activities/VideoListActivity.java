@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -27,9 +26,7 @@ public class VideoListActivity extends AppCompatActivity implements OnVideoSelec
 
     private static final String VIDEO_SEARCH_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     private RecyclerView recyclerView;
-    private ImageView thumbnail;
     private List<ItemYT> items;
-    private VideoEntry videoEntry = new VideoEntry();
     private VideoEntries videoEntries = new VideoEntries();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +37,6 @@ public class VideoListActivity extends AppCompatActivity implements OnVideoSelec
         request = request.replaceAll("\\s", "+");
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        thumbnail = (ImageView) findViewById(R.id.img);
 
         getVideos(request);
 
@@ -54,7 +49,10 @@ public class VideoListActivity extends AppCompatActivity implements OnVideoSelec
             public void onResponse(String response) {
                 RequestResult requestResult = new Gson().fromJson(response, RequestResult.class);
                 items = requestResult.getItems();
+
                 for(int i=0; i<items.size(); i++) {
+                    VideoEntry videoEntry = new VideoEntry();
+
                     videoEntry.setName(items.get(i).getSnippet().getTitle());
                     videoEntry.setId(items.get(i).getId().getVideoID());
                     videoEntry.setUrl(items.get(i).getSnippet().getThumbnails().getMedium().getUrl());
@@ -80,6 +78,6 @@ public class VideoListActivity extends AppCompatActivity implements OnVideoSelec
 
     @Override
     public void onVideoSelected(VideoEntry video) {
-        ShowVideoActivity.start(this, video.getName());
+        ShowVideoActivity.start(this, video.getId());
     }
 }
