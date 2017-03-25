@@ -1,5 +1,6 @@
 package com.example.tino954.finalproject.Adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +19,17 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoViewHolder> {
 
     private final VideoEntries videoEntries;
     private OnVideoSelectedListener onVideoSelectedListener;
-    public VideoAdapter(VideoEntries videoEntries) {this.videoEntries = videoEntries; }
+    private Context mContext;
+
+    public VideoAdapter(Context context, VideoEntries videoEntries) {
+        mContext = context;
+        this.videoEntries = videoEntries;
+    }
 
     @Override
     public VideoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_video, parent, false);
-        return new VideoViewHolder(view);
+        return new VideoViewHolder(mContext,view);
     }
 
     @Override
