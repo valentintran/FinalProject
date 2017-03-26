@@ -1,8 +1,4 @@
 # FinalProject
 
-- Need to use Picasso to display thumbnail from his url, problem with context.
- 
- 
-#### - Error on the YoutubePlayer :
+I was not able to use Picasso to display thumbnail from his url.
 
-  - There is a network error, I can't display the video.
